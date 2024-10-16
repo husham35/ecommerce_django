@@ -18,35 +18,112 @@
 					up with facebook</button>
 				<div class="position-relative mt-4">
 					<hr class="bg-body-secondary" />
-					<div class="divider-content-center">or use email</div>
+					<div class="divider-content-center">or</div>
 				</div>
-				<form>
-					<div class="mb-3 text-start"><label class="form-label" for="name">Name</label><input
-							class="form-control" id="name" type="text" placeholder="Name" /></div>
-					<div class="mb-3 text-start"><label class="form-label" for="email">Email address</label><input
-							class="form-control" id="email" type="email" placeholder="name@example.com" /></div>
+				<form method="POST">
+					{% csrf_token %}
+					<!-- Display error messages -->
+					{% if form.errors %}
+					<div class="alert alert-warning">
+						<ul>
+							{% for field, errors in form.errors.items %}
+							{% for error in errors %}
+							<li>{{ error }}</li>
+							{% endfor %}
+							{% endfor %}
+						</ul>
+					</div>
+					{% endif %}
+					<div class="mb-3 text-start">
+						<label class="form-label" for="name">First name</label>
+						<input class="form-control" name="first_name" id="id_first_name" type="text" value="{{ form.last_name.value|default_if_none:'' }}" placeholder="Name" />
+						{% if form.first_name.errors %}
+						<div class="text-danger fs-9">
+							{% for error in form.first_name.errors %}
+							<p>{{ error }}</p>
+							{% endfor %}
+						</div>
+						{% endif %}
+					</div>
+					<div class="mb-3 text-start">
+						<label class="form-label" for="name">Last name</label>
+						<input class="form-control" name="last_name" id="id_last_name" type="text" value="{{ form.last_name.value|default_if_none:'' }}" placeholder="Name" />
+						{% if form.last_name.errors %}
+						<div class="text-danger fs-9">
+							{% for error in form.last_name.errors %}
+							<p>{{ error }}</p>
+							{% endfor %}
+						</div>
+						{% endif %}
+					</div>
+					<div class="mb-3 text-start">
+						<label class="form-label" for="name">username</label>
+						<input class="form-control" name="username" id="id_username" type="text" value="{{ form.username.value|default_if_none:'' }}" placeholder="Name" />
+						{% if form.username.errors %}
+						<div class="text-danger fs-9">
+							{% for error in form.username.errors %}
+							<p>{{ error }}</p>
+							{% endfor %}
+						</div>
+						{% endif %}
+					</div>
+					<div class="mb-3 text-start"><label class="form-label" for="email">Email address</label>
+						<input class="form-control" name="email" id="id_email" type="email" value="{{ form.email.value|default_if_none:'' }}" placeholder="name@example.com" />
+						{% if form.email.errors %}
+						<div class="text-danger fs-9">
+							{% for error in form.email.errors %}
+							<p>{{ error }}</p>
+							{% endfor %}
+						</div>
+						{% endif %}
+					</div>
 					<div class="row g-3 mb-3">
 						<div class="col-sm-6"><label class="form-label" for="password">Password</label>
-							<div class="position-relative" data-password="data-password"><input
-									class="form-control form-icon-input pe-6" id="password" type="password"
-									placeholder="Password" data-password-input="data-password-input" /><button
-									class="btn px-3 py-0 h-100 position-absolute top-0 end-0 fs-7 text-body-tertiary"
+							<div class="position-relative" data-password="data-password">
+								<input class="form-control form-icon-input pe-6" name="password1" id="id_password1" type="password" value="{{ form.password1.value|default_if_none:'' }}"
+									placeholder="Password" data-password-input="data-password-input" />
+									<button class="btn px-3 py-0 h-100 position-absolute top-0 end-0 fs-7 text-body-tertiary"
 									data-password-toggle="data-password-toggle"><span class="uil uil-eye show"></span><span
-										class="uil uil-eye-slash hide"></span></button></div>
+										class="uil uil-eye-slash hide"></span>
+									</button>
+									
+							</div>
+							{% if form.password1.errors %}
+									<div class="text-danger fs-9">
+										{% for error in form.password1.errors %}
+										<p>{{ error }}</p>
+										{% endfor %}
+									</div>
+									{% endif %}
 						</div>
 						<div class="col-sm-6"><label class="form-label" for="confirmPassword">Confirm Password</label>
-							<div class="position-relative" data-password="data-password"><input
-									class="form-control form-icon-input pe-6" id="confirmPassword" type="password"
-									placeholder="Confirm Password" data-password-input="data-password-input" /><button
+							<div class="position-relative" data-password="data-password">
+								<input class="form-control form-icon-input pe-6" name="password2" id="id_password2" type="password" value="{{ form.password2.value|default_if_none:'' }}"
+									placeholder="Confirm Password" data-password-input="data-password-input" />
+									<button
 									class="btn px-3 py-0 h-100 position-absolute top-0 end-0 fs-7 text-body-tertiary"
 									data-password-toggle="data-password-toggle"><span class="uil uil-eye show"></span><span
-										class="uil uil-eye-slash hide"></span></button></div>
+										class="uil uil-eye-slash hide"></span>
+									</button>
+									
+							</div>
+							{% if form.password2.errors %}
+									<div class="text-danger fs-9">
+										{% for error in form.password2.errors %}
+										<p>{{ error }}</p>
+										{% endfor %}
+									</div>
+									{% endif %}
 						</div>
 					</div>
-					<div class="form-check mb-3"><input class="form-check-input" id="termsService" type="checkbox" /><label
-							class="form-label fs-9 text-transform-none" for="termsService">I accept the <a href="#!">terms
-							</a>and <a href="#!">privacy policy</a></label></div><button
-						class="btn btn-primary w-100 mb-3">Sign up</button>
+					<!-- {% csrf_token %}
+					{{ form.as_p }} -->
+					<div class="form-check mb-3">
+						<input class="form-check-input" id="termsService" type="checkbox" />
+						<label class="form-label fs-9 text-transform-none" for="termsService">I accept the <a href="#!">terms
+							</a>and <a href="#!">privacy policy</a></label>
+					</div>
+					<button class="btn btn-primary w-100 mb-3" type="submit">Sign up</button>
 					<div class="text-center"><a class="fs-9 fw-bold"
 							href="{% url 'login' %}">Sign in to an existing account</a>
 					</div>
