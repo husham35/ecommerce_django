@@ -23,12 +23,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 	# customer home
 	path('', include('home.urls')),
-	path('contact-us/', include('home.urls')),
-	# auth
-	# path('login/', include('auth_views.urls')),
-	# path('login/', auth_views.LoginView.as_view(template_name='auth_views/login.html'), name='login'),  # Custom login view
-	# path('login/', auth_views.Reg.as_view(template_name='auth_views/login.html'), name='login'),  # Custom login view
+
+
 	path('accounts/', include('accounts.urls')),
-	# path('world/', include('auth_views.urls'), name='world'),
+	# path('accounts/', include('allauth.urls')),
+	path('dashboard/', include('accounts.urls')),
+	path('products/', include('products.urls')),
 	
 ]

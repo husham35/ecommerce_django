@@ -103,6 +103,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 	'allauth.account.middleware.AccountMiddleware', #added this line
+	
+    # 'ecommerce.middleware.RedirectStaffMiddleware',  # Add this line
+
 ]
 
 ROOT_URLCONF = 'ecommerce.urls'
@@ -188,6 +191,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGIN_URL = 'accounts/login/'
-LOGIN_REDIRECT_URL = '/'
+# LOGIN_REDIRECT_URL = 'accounts/after_login_redirect'
 LOGOUT_REDIRECT_URL = '/'
 
+# ACCOUNT_ADAPTER = 'accounts.adapters.CustomAccountAdapter'

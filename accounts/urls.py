@@ -9,5 +9,7 @@ urlpatterns = [
 	path('logout', auth_views.LogoutView.as_view(), name='logout'),
 	path('signup', views.register_page, name='signup'),
 	path('forgot-password', views.forgot_password, name='forgot-password'),
-
+	# staff dashboard
+	path('', views.staff_dashboard, name='staff_dashboard'),
+	# path('', views.after_login_redirect, name='after_login_redirect'),
 ]
