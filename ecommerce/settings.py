@@ -94,6 +94,12 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -191,7 +197,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGIN_URL = 'accounts/login/'
-# LOGIN_REDIRECT_URL = 'accounts/after_login_redirect'
+LOGIN_REDIRECT_URL = '/accounts/after_login_redirect'
 LOGOUT_REDIRECT_URL = '/'
 
 # ACCOUNT_ADAPTER = 'accounts.adapters.CustomAccountAdapter'
+
+

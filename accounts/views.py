@@ -18,19 +18,9 @@ from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm
 from django.contrib.auth import authenticate, login, logout
 
-from allauth.account.views import LoginView
-
 # Create your views here
-# def login_page(request):
-#     return render(request, "accounts/login.html")
-
-class CustomLoginView(LoginView):
-    def get_success_url(self):
-        user = self.request.user
-        if user.is_staff:
-            return '/accounts/staff_dashboard/'
-        else:
-            return '/home/'
+def login_page(request):
+    return render(request, "accounts/login.html")
 
 def register_page(request):
     if request.method == 'POST':
@@ -58,6 +48,6 @@ def forgot_password(request):
 @login_required
 def after_login_redirect(request):
     if request.user.is_staff:
-        return 'dashboard' # Change 'admin_dashboard' to the correct URL name for your custom admin page
+        return redirect('/dashboard') # Change 'admin_dashboard' to the correct URL name for your custom admin page
     else:
-        return 'home'  # Change 'user_dashboard' to the correct URL for normal users
+        return redirect('home')  # Change 'user_dashboard' to the correct URL for normal users

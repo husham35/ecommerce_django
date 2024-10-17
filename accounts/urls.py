@@ -11,5 +11,5 @@ urlpatterns = [
 	path('forgot-password', views.forgot_password, name='forgot-password'),
 	# staff dashboard
 	path('', views.staff_dashboard, name='staff_dashboard'),
-	# path('', views.after_login_redirect, name='after_login_redirect'),
+	path('after_login_redirect', views.after_login_redirect, name='after_login_redirect'),
 ]
