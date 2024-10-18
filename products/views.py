@@ -9,6 +9,13 @@ def product_list(request):
     return render(request, 'products/product_list.html', {'products': products})
     # return HttpResponse('Hello')
 
+# View for listing products (accessible to all users)
+@staff_member_required
+def product_list_admin(request):
+    products = Product.objects.all()
+    return render(request, 'products/product_list_admin.html', {'products': products})
+    # return HttpResponse('Hello')
+
 # Only admin users can add a product
 @staff_member_required
 def add_product(request):
@@ -19,7 +26,7 @@ def add_product(request):
             return redirect('product_list')
     else:
         form = ProductForm()
-    return render(request, 'products/product_form.html', {'form': form})
+    return render(request, 'products/product_add.html', {'form': form})
 
 
 # Only admin users can update a product
