@@ -1,0 +1,218 @@
+{% extends "base_admin.html" %}
+
+{% load static %}
+{% block title %} Products {% endblock  %}
+
+{% block content %}
+<nav class="mb-3" aria-label="breadcrumb">
+	<ol class="breadcrumb mb-0">
+		<li class="breadcrumb-item"><a href="{% url 'staff_dashboard' %}">Dashboard</a></li>
+		<li class="breadcrumb-item"><a href="{% url 'products-list-admin' %}">Products</a></li>
+		<li class="breadcrumb-item active">Products Category</li>
+	</ol>
+</nav>
+<div class="mb-9">
+	<div id="products-category" data-list=''>
+		<div class="mb-4">
+			<div class="d-flex flex-wrap gap-3">
+				<div class="ms-xxl-auto">
+					<button class="btn btn-link text-body me-4 px-0"><span class="fa-solid fa-file-export fs-9 me-2"></span>Export</button>
+					<a class="btn btn-primary" id="addBtn" href="{% url 'add_category' %}"><span class="fas fa-plus me-2"></span>Add product category</a>
+				</div>
+			</div>
+		</div>
+		<div id="tableExample3"
+			data-list="{&quot;valueNames&quot;:[&quot;name&quot;,&quot;email&quot;,&quot;age&quot;],&quot;page&quot;:5,&quot;pagination&quot;:true}">
+			<div class="search-box mb-3 mx-auto">
+				<form class="position-relative"><input class="form-control search-input search form-control-sm" type="search"
+						placeholder="Search" aria-label="Search">
+					<svg class="svg-inline--fa fa-magnifying-glass search-box-icon" aria-hidden="true" focusable="false"
+						data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 512 512" data-fa-i2svg="">
+						<path fill="currentColor"
+							d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z">
+						</path>
+					</svg><!-- <span class="fas fa-search search-box-icon"></span> Font Awesome fontawesome.com -->
+				</form>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-striped table-sm fs-9 mb-0">
+					<thead>
+						<tr>
+							<th class="sort border-top border-translucent ps-3" data-sort="name">Name</th>
+							<th class="sort border-top" data-sort="email">Email</th>
+							<th class="sort border-top" data-sort="age">Age</th>
+							<th class="sort text-end align-middle pe-0 border-top" scope="col">ACTION</th>
+						</tr>
+					</thead>
+					<tbody class="list">
+						<tr>
+							<td class="align-middle ps-3 name">Anna</td>
+							<td class="align-middle email">anna@example.com</td>
+							<td class="align-middle age">18</td>
+							<td class="align-middle white-space-nowrap text-end pe-0">
+								<div class="btn-reveal-trigger position-static"><button
+										class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
+										type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
+										aria-expanded="false" data-bs-reference="parent"><svg
+											class="svg-inline--fa fa-ellipsis fs-10" aria-hidden="true" focusable="false"
+											data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 448 512" data-fa-i2svg="">
+											<path fill="currentColor"
+												d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z">
+											</path>
+										</svg><!-- <span class="fas fa-ellipsis-h fs-10"></span> Font Awesome fontawesome.com --></button>
+									<div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item"
+											href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
+										<div class="dropdown-divider"></div><a class="dropdown-item text-danger"
+											href="#!">Remove</a>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="align-middle ps-3 name">Homer</td>
+							<td class="align-middle email">homer@example.com</td>
+							<td class="align-middle age">35</td>
+							<td class="align-middle white-space-nowrap text-end pe-0">
+								<div class="btn-reveal-trigger position-static"><button
+										class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
+										type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
+										aria-expanded="false" data-bs-reference="parent"><svg
+											class="svg-inline--fa fa-ellipsis fs-10" aria-hidden="true" focusable="false"
+											data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 448 512" data-fa-i2svg="">
+											<path fill="currentColor"
+												d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z">
+											</path>
+										</svg><!-- <span class="fas fa-ellipsis-h fs-10"></span> Font Awesome fontawesome.com --></button>
+									<div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item"
+											href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
+										<div class="dropdown-divider"></div><a class="dropdown-item text-danger"
+											href="#!">Remove</a>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="align-middle ps-3 name">Oscar</td>
+							<td class="align-middle email">oscar@example.com</td>
+							<td class="align-middle age">52</td>
+							<td class="align-middle white-space-nowrap text-end pe-0">
+								<div class="btn-reveal-trigger position-static"><button
+										class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
+										type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
+										aria-expanded="false" data-bs-reference="parent"><svg
+											class="svg-inline--fa fa-ellipsis fs-10" aria-hidden="true" focusable="false"
+											data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 448 512" data-fa-i2svg="">
+											<path fill="currentColor"
+												d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z">
+											</path>
+										</svg><!-- <span class="fas fa-ellipsis-h fs-10"></span> Font Awesome fontawesome.com --></button>
+									<div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item"
+											href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
+										<div class="dropdown-divider"></div><a class="dropdown-item text-danger"
+											href="#!">Remove</a>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="align-middle ps-3 name">Emily</td>
+							<td class="align-middle email">emily@example.com</td>
+							<td class="align-middle age">30</td>
+							<td class="align-middle white-space-nowrap text-end pe-0">
+								<div class="btn-reveal-trigger position-static"><button
+										class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
+										type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
+										aria-expanded="false" data-bs-reference="parent"><svg
+											class="svg-inline--fa fa-ellipsis fs-10" aria-hidden="true" focusable="false"
+											data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 448 512" data-fa-i2svg="">
+											<path fill="currentColor"
+												d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z">
+											</path>
+										</svg><!-- <span class="fas fa-ellipsis-h fs-10"></span> Font Awesome fontawesome.com --></button>
+									<div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item"
+											href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
+										<div class="dropdown-divider"></div><a class="dropdown-item text-danger"
+											href="#!">Remove</a>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="align-middle ps-3 name">Jara</td>
+							<td class="align-middle email">jara@example.com</td>
+							<td class="align-middle age">25</td>
+							<td class="align-middle white-space-nowrap text-end pe-0">
+								<div class="btn-reveal-trigger position-static"><button
+										class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
+										type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
+										aria-expanded="false" data-bs-reference="parent"><svg
+											class="svg-inline--fa fa-ellipsis fs-10" aria-hidden="true" focusable="false"
+											data-prefix="fas" data-icon="ellipsis" role="img" xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 448 512" data-fa-i2svg="">
+											<path fill="currentColor"
+												d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z">
+											</path>
+										</svg><!-- <span class="fas fa-ellipsis-h fs-10"></span> Font Awesome fontawesome.com --></button>
+									<div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item"
+											href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
+										<div class="dropdown-divider"></div><a class="dropdown-item text-danger"
+											href="#!">Remove</a>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="align-middle ps-3 name">Jara</td>
+							<td class="align-middle email">jara@example.com</td>
+							<td class="align-middle age">25</td>
+							<td class="align-middle white-space-nowrap text-end pe-0">
+								<div class="btn-reveal-trigger position-static"><button
+										class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10" type="button"
+										data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false"
+										data-bs-reference="parent"><svg class="svg-inline--fa fa-ellipsis fs-10" aria-hidden="true"
+											focusable="false" data-prefix="fas" data-icon="ellipsis" role="img"
+											xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+											<path fill="currentColor"
+												d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z">
+											</path>
+										</svg><!-- <span class="fas fa-ellipsis-h fs-10"></span> Font Awesome fontawesome.com --></button>
+									<div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item" href="#!">View</a><a
+											class="dropdown-item" href="#!">Export</a>
+										<div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Remove</a>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="d-flex flex-between-center pt-3">
+				<div class="pagination d-none"></div>
+				<p class="mb-0 fs-9">
+					<span class="d-none d-sm-inline-block" data-list-info="data-list-info"></span>
+					<span class="d-none d-sm-inline-block"> &mdash; </span>
+					<a class="fw-semibold" href="#!" data-list-view="*">
+						View all
+						<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span>
+					</a><a class="fw-semibold d-none" href="#!" data-list-view="less">
+						View Less
+						<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span>
+					</a>
+				</p>
+				<div class="d-flex">
+					<button class="btn btn-sm btn-primary" type="button" data-list-pagination="prev"><span>Previous</span></button>
+					<button class="btn btn-sm btn-primary px-4 ms-2" type="button"
+						data-list-pagination="next"><span>Next</span></button>
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>
+</div>
+{% endblock %}

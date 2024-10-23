@@ -1,0 +1,28 @@
+{% extends "base_admin.html" %}
+
+{% load static %}
+{% block title %} Add Product {% endblock %}
+
+{% block content %}
+<nav class="mb-3" aria-label="breadcrumb">
+	<ol class="breadcrumb mb-0">
+		<li class="breadcrumb-item"><a href="{% url 'staff_dashboard' %}">Dashboard</a></li>
+		<li class="breadcrumb-item"><a href="{% url 'products-list-admin' %}">Products</a></li>
+		<li class="breadcrumb-item"><a href="{% url 'category-list' %}">Products Categories</a></li>
+		<li class="breadcrumb-item active">Add New Product Category</li>
+	</ol>
+</nav>
+<form class="mb-9">
+	<div class="row g-3 flex-between-end mb-5">
+		<div class="col-auto">
+			<h2 class="mb-2">Add a product category</h2>
+		</div>
+	</div>
+	<div class="mb-3">
+		<label class="form-label" for="basic-form-name">Name</label>
+		<input class="form-control" id="basic-form-name" type="text" placeholder="Name" />
+	</div>
+	<a class="btn btn-warning" href="{% url 'category-list' %}">Cancel</a>
+	<button class="btn btn-primary" type="submit">Submit</button>
+</form>
+{% endblock %}
