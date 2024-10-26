@@ -9,28 +9,21 @@
 		<li class="breadcrumb-item"><a href="{% url 'staff_dashboard' %}">Dashboard</a></li>
 		<li class="breadcrumb-item"><a href="{% url 'products-list-admin' %}">Products</a></li>
 		<li class="breadcrumb-item"><a href="{% url 'categories-list' %}">Products Categories</a></li>
-		<li class="breadcrumb-item active">Add New Product Category</li>
+		<li class="breadcrumb-item active">Category details</li>
 	</ol>
 </nav>
-<form class="mb-9" method="POST">
-	{% csrf_token %}
+<!-- <form class="mb-9" method="POST">
+	{% csrf_token %} -->
 	<div class="row g-3 flex-between-end mb-5">
 		<div class="col-auto">
-			<h2 class="mb-2">Add a product category</h2>
+			<h2 class="mb-2">Category details</h2>
 		</div>
 	</div>
 	<div class="mb-3">
 		<label class="form-label" for="basic-form-name">Name</label>
-		<input class="form-control" name="name" id="id_name" type="text" value="{{ form.name.value|default_if_none:'' }}" placeholder="Name" />
-		{% if form.name.errors %}
-		<div class="text-danger fs-9">
-			{% for error in form.name.errors %}
-			<p>{{ error }}</p>
-			{% endfor %}
-		</div>
-		{% endif %}
+		<input class="form-control" name="name" id="id_name" type="text" value="{{ category.name|default_if_none:'' }}" placeholder="Name" disabled/>
 	</div>
 	<a class="btn btn-warning" href="{% url 'categories-list' %}">Cancel</a>
-	<button class="btn btn-primary" type="submit">Submit</button>
-</form>
+	<a class="btn btn-primary" href="{% url 'edit_category' category.id %}" type="submit">Edit</a>
+<!-- </form> -->
 {% endblock %}

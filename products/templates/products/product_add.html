@@ -11,7 +11,8 @@
 		<li class="breadcrumb-item active">Add New Product</li>
 	</ol>
 </nav>
-<form class="mb-9">
+<form class="mb-9" method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
 	<div class="row g-3 flex-between-end mb-5">
 		<div class="col-auto">
 			<h2 class="mb-2">Add a product</h2>
@@ -19,37 +20,85 @@
 	</div>
 	<div class="mb-3">
 		<label class="form-label" for="basic-form-name">Product Name</label>
-		<input class="form-control" id="basic-form-name" type="text" placeholder="Name" />
+		<input class="form-control" name="name" maxlength="200"  id="id_name" type="text" value="{{ form.name.value|default_if_none:'' }}" placeholder="Product name" />
+		{% if form.name.errors %}
+		<div class="text-danger fs-9">
+			{% for error in form.name.errors %}
+			<p>{{ error }}</p>
+			{% endfor %}
+		</div>
+		{% endif %}
 	</div>
 	<div class="mb-3">
 		<label class="form-label" for="basic-form-gender">Category</label>
-		<select class="form-select" id="basic-form-gender" aria-label="Default select example">
+		<select class="form-select" name="category"  id="id_category" aria-label="Default select example">
 			<option selected="selected">Select product category</option>
-			<option value="male">Male</option>
+			{% for category in form.category.field.queryset %}
+			<option value="{{ category.pk }}" {% if form.category.value == category.pk %}selected{% endif %}>{{ category.name }}</option>
+			{% endfor %}
+			<!-- <option value="male">Male</option>
 			<option value="female">Female</option>
-			<option value="other">Other</option>
+			<option value="other">Other</option> -->
 		</select>
+		{% if form.category.errors %}
+		<div class="text-danger fs-9">
+			{% for error in form.category.errors %}
+			<p>{{ error }}</p>
+			{% endfor %}
+		</div>
+		{% endif %}
 	</div>
 	<div class="mb-3">
 		<label class="form-label" for="basic-form-password">Price</label>
-		<input class="form-control" id="basic-form-password" type="number" placeholder="$" />
+		<input class="form-control" name="price" step="0.01"  id="id_price" type="number" value="{{ form.price.value|default_if_none:'' }}" placeholder="$" />
+		{% if form.price.errors %}
+		<div class="text-danger fs-9">
+			{% for error in form.price.errors %}
+			<p>{{ error }}</p>
+			{% endfor %}
+		</div>
+		{% endif %}
 	</div>
 	<div class="mb-3">
 		<label class="form-label">Product Image</label>
-		<input class="form-control" type="file" />
+		<input class="form-control" type="file" name="image" accept="image/*" id="id_image" />
+		{% if form.image.errors %}
+		<div class="text-danger fs-9">
+			{% for error in form.image.errors %}
+			<p>{{ error }}</p>
+			{% endfor %}
+		</div>
+		{% endif %}
 	</div>
 	<div class="mb-3">
 		<label class="form-label" for="basic-form-textarea">Description</label>
-		<textarea class="form-control" id="basic-form-textarea" rows="3" placeholder="Description"></textarea>
+		<textarea class="form-control" name="description" id="basic-form-textarea" rows="5" cols="40" placeholder="Description">{{ form.description.value|default_if_none:'' }}</textarea>
+		{% if form.description.errors %}
+		<div class="text-danger fs-9">
+			{% for error in form.description.errors %}
+			<p>{{ error }}</p>
+			{% endfor %}
+		</div>
+		{% endif %}
 	</div>
 	<div class="mb-3 form-check">
-		<input class="form-check-input" id="basic-form-checkbox" type="checkbox" />
+		<input class="form-check-input" name="published" id="id_published" {% if form.published.value %}checked{% endif %} type="checkbox" />
 		<label class="form-check-label" for="basic-form-checkbox">Publish Product</label>
+		{% if form.published.errors %}
+		<div class="text-danger fs-9">
+			{% for error in form.published.errors %}
+			<p>{{ error }}</p>
+			{% endfor %}
+		</div>
+		{% endif %}
 	</div>
 	<div class="col-auto">
 		<a class="btn btn-warning me-2 mb-2 mb-sm-0" href="{% url 'products-list-admin' %}">Cancel</a>
 		<button class="btn btn-primary me-2 mb-2 mb-sm-0" type="submit">Save</button>
 	</div>
 	<!-- <button class="btn btn-primary" type="submit">Submit</button> -->
+
+
+	
 </form>
 {% endblock %}

@@ -9,14 +9,14 @@
 		<li class="breadcrumb-item"><a href="{% url 'staff_dashboard' %}">Dashboard</a></li>
 		<li class="breadcrumb-item"><a href="{% url 'products-list-admin' %}">Products</a></li>
 		<li class="breadcrumb-item"><a href="{% url 'categories-list' %}">Products Categories</a></li>
-		<li class="breadcrumb-item active">Add New Product Category</li>
+		<li class="breadcrumb-item active">Edit Product Category</li>
 	</ol>
 </nav>
 <form class="mb-9" method="POST">
 	{% csrf_token %}
 	<div class="row g-3 flex-between-end mb-5">
 		<div class="col-auto">
-			<h2 class="mb-2">Add a product category</h2>
+			<h2 class="mb-2">Edit product category</h2>
 		</div>
 	</div>
 	<div class="mb-3">

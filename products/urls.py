@@ -10,9 +10,9 @@ urlpatterns = [
     path('<int:product_id>/edit/', edit_product, name='edit_product'),  # Admin only
     path('<int:product_id>/delete/', delete_product, name='delete_product'),  # Admin only
 	# product category
-    path('category-list', category_list, name='category-list'), # Admin only
-    path('add-category/', add_category, name='add_category'),  # Admin only
-	path('<int:category_id>/', category_details, name='category_details'),
-    path('<int:category_id>/edit/', edit_category, name='edit_category'),  # Admin only
-    path('<int:category_id>/delete/', delete_category, name='delete_category'),  # Admin only
+    path('categories-list', category_list, name='categories-list'), # Admin only
+    path('categories/add-category/', add_category, name='add_category'),  # Admin only
+	path('categories/<int:category_id>/', category_details, name='category_details'),
+    path('categories/edit/<int:category_id>/', edit_category, name='edit_category'),  # Admin only
+    path('categories/delete/<int:category_id>/', delete_category, name='delete_category'),  # Admin only
 ]
