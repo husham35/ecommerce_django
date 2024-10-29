@@ -32,7 +32,7 @@ urlpatterns = [
 	# path('accounts/', include('allauth.urls')),
 	path('dashboard/', include('accounts.urls')),
 	path('products/', include('products.urls')),
-    # path('product-categories/', include('products.urls')),
+    path('customers/', include('users.urls')),
 	
 ]
 

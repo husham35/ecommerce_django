@@ -6,9 +6,11 @@ urlpatterns = [
     path('', product_list, name='product_list'),  # Public product list
 	path('products-list', product_list_admin, name='products-list-admin'), # Admin only
     path('add/', add_product, name='add_product'),  # Admin only
-	path('<int:product_id>/', product_details, name='product_details'),
-    path('<int:product_id>/edit/', edit_product, name='edit_product'),  # Admin only
-    path('<int:product_id>/delete/', delete_product, name='delete_product'),  # Admin only
+	path('<int:product_id>/', product_details, name='product_details'), # customer view
+	# path('<int:product_id>/', product_details, name='product_view'), # admin view
+    path('edit/<int:product_id>', edit_product, name='edit_product'),  # Admin only
+    path('delete/<int:product_id>', delete_product, name='delete_product'),  # Admin only
+	
 	# product category
     path('categories-list', category_list, name='categories-list'), # Admin only
     path('categories/add-category/', add_category, name='add_category'),  # Admin only

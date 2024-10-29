@@ -27,7 +27,7 @@ def register_page(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # Log the user in after sign-up
+            login(request, user, backend='allauth.account.auth_backends.AuthenticationBackend')  # Log the user in after sign-up
             return redirect('home')  # Redirect to homepage after signup
     else:
         form = SignUpForm()

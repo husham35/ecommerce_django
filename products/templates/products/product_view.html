@@ -1,0 +1,52 @@
+{% extends "base_admin.html" %}
+
+{% load static %}
+{% block title %} Add Product {% endblock %}
+
+{% block content %}
+<nav class="mb-3" aria-label="breadcrumb">
+	<ol class="breadcrumb mb-0">
+		<li class="breadcrumb-item"><a href="{% url 'staff_dashboard' %}">Dashboard</a></li>
+		<li class="breadcrumb-item"><a href="{% url 'products-list-admin' %}">Products</a></li>
+		<li class="breadcrumb-item active">Product details</li>
+	</ol>
+</nav>
+<!-- <form class="mb-9" method="POST" enctype="multipart/form-data"> -->
+	<!-- {% csrf_token %} -->
+	<div class="row g-3 flex-between-end mb-5">
+		<div class="col-auto">
+			<h2 class="mb-2">Product details</h2>
+		</div>
+	</div>
+	<div class="mb-3">
+		<label class="form-label" for="basic-form-name">Product Name</label>
+		<input class="form-control" name="name" maxlength="200"  id="id_name" type="text" value="{{ product.name|default_if_none:'' }}" placeholder="Product name"  disabled/>
+	</div>
+	<div class="mb-3">
+		<label class="form-label" for="basic-form-gender">Category</label>
+		<select class="form-select" name="category"  id="id_category" aria-label="Default select example" disabled>
+			<option selected="selected">{{ product.category }}</option>
+		</select>
+	</div>
+	<div class="mb-3">
+		<label class="form-label" for="basic-form-password">Price</label>
+		<input class="form-control" name="price" step="0.01"  id="id_price" type="number" value="{{ product.price|default_if_none:'' }}" placeholder="$"  disabled/>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Product Image</label>
+		<br>
+		<br>
+		<img src="{{ product.image.url }}" alt="" width="400" height="200" disabled>
+	</div>
+	<div class="mb-3">
+		<label class="form-label" for="basic-form-textarea">Description</label>
+		<textarea class="form-control" name="description" id="basic-form-textarea" rows="5" cols="40" placeholder="Description" disabled>{{ product.description|default_if_none:'' }}</textarea>
+	</div>
+	<div class="mb-3 form-check">
+		<input class="form-check-input" name="published" id="id_published" {% if product.published %}checked{% endif %} type="checkbox"  disabled/>
+	</div>
+	<div class="col-auto">
+		<a class="btn btn-warning me-2 mb-2 mb-sm-0" href="{% url 'products-list-admin' %}">Cancel</a>
+		<a class="btn btn-primary me-2 mb-2 mb-sm-0" href="{% url 'edit_product' product.id %}">Edit</a>
+	</div>
+{% endblock %}

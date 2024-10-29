@@ -36,7 +36,7 @@
 					{% endif %}
 					<div class="mb-3 text-start">
 						<label class="form-label" for="name">First name</label>
-						<input class="form-control" name="first_name" id="id_first_name" type="text" value="{{ form.last_name.value|default_if_none:'' }}" placeholder="Name" />
+						<input class="form-control" name="first_name" id="id_first_name" type="text" value="{{ form.first_name.value|default_if_none:'' }}" placeholder="Name" />
 						{% if form.first_name.errors %}
 						<div class="text-danger fs-9">
 							{% for error in form.first_name.errors %}

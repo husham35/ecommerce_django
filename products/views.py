@@ -14,7 +14,7 @@ def product_list(request):
     return render(request, 'products/product_list.html', {'products': products})
     # return HttpResponse('Hello')
 
-# View for listing products (accessible to all users)
+# View for listing products (admin/staff users)
 @staff_member_required
 def product_list_admin(request):
     products = Product.objects.all()
@@ -34,10 +34,13 @@ def add_product(request):
     return render(request, 'products/product_add.html', {'form': form})
 
 
-# Only admin users can update a product
-# @staff_member_required
+# products details view for customers
 def product_details(request, product_id):
     product = get_object_or_404(Product, id=product_id)
+    if request.user.is_authenticated and request.user.is_staff:
+        return render(request, 'products/product_view.html', {'product': product})
+    else:
+        return render(request, 'products/product_details.html', {'product': product})
     # if request.method == 'POST':
     #     form = ProductForm(request.POST, request.FILES, instance=product)
     #     if form.is_valid():
@@ -45,7 +48,14 @@ def product_details(request, product_id):
     #         return redirect('product_list')
     # else:
     #     form = ProductForm(instance=product)
-    return render(request, 'products/product_details.html', {'product': product}) # {'product': product})
+    
+
+
+# Only admin users can update a product
+# @staff_member_required
+# def product_view(request, product_id):
+#     product = get_object_or_404(Product, id=product_id)
+#     return render(request,)
 
 
 # Only admin users can update a product
@@ -59,7 +69,7 @@ def edit_product(request, product_id):
             return redirect('products-list-admin')
     else:
         form = ProductForm(instance=product)
-    return render(request, 'products/product_form.html', {'form': form})
+    return render(request, 'products/product_edit.html', {'form': form})
 
 # Only admin users can delete a product
 @staff_member_required
@@ -96,13 +106,6 @@ def add_category(request):
 # @staff_member_required
 def category_details(request, category_id):
     category = get_object_or_404(Category, id=category_id)
-    # if request.method == 'POST':
-    #     form = Categoryorm(request.POST, request.FILES, instance=category)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect('product_list')
-    # else:
-    #     form = ProductForm(instance=category)
     return render(request, 'products/category_view.html', {'category': category}) # {'category': category})
 
 
