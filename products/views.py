@@ -11,7 +11,8 @@ def product_list(request):
     # products = Product.objects.all()
     # Filter products to only show published ones
     products = Product.objects.filter(published=True)
-    return render(request, 'products/product_list.html', {'products': products})
+    categories = Category.objects.all()
+    return render(request, 'products/product_list.html', {'products': products, 'categories': categories})
     # return HttpResponse('Hello')
 
 # View for listing products (admin/staff users)

@@ -631,31 +631,21 @@
             <div class="row gx-7 gy-5 mb-5">
               <div class="col-12 col-sm-6 col-md-4">
                 <div class="d-flex align-items-center mb-3">
-                  <span
+                  <!-- <span
                     class="text-primary me-2"
                     data-feather="pocket"
                     style="stroke-width: 3"
-                  ></span>
-                  <h6 class="text-body-highlight mb-0 text-nowrap">Collectibles &amp; Art</h6>
+                  ></span> -->
+                  <!-- <h6 class="text-body-highlight mb-0 text-nowrap">Collectibles &amp; Art</h6> -->
                 </div>
                 <div class="ms-n2">
-                  <a class="text-body-emphasis d-block mb-1 text-decoration-none bg-body-highlight-hover px-2 py-1 rounded-2"
-                    href="#!"
-                    >Collectibles</a
-                  ><a
-                    class="text-body-emphasis d-block mb-1 text-decoration-none bg-body-highlight-hover px-2 py-1 rounded-2"
-                    href="#!"
-                    >Antiques</a
-                  ><a class="text-body-emphasis d-block mb-1 text-decoration-none bg-body-highlight-hover px-2 py-1 rounded-2"
-                    href="#!"
-                    >Sports memorabilia </a
-                  ><a class="text-body-emphasis d-block mb-1 text-decoration-none bg-body-highlight-hover px-2 py-1 rounded-2"
-                    href="#!"
-                    >Art</a
-                  >
+                  {% for category in categories %}
+                    <a class="text-body-emphasis d-block mb-1 text-decoration-none bg-body-highlight-hover px-2 py-1 rounded-2" href="#!">{{ category.name }}</a>
+                  {% endfor %}
+                  
                 </div>
               </div>
-              <div class="col-12 col-sm-6 col-md-4">
+              <!-- <div class="col-12 col-sm-6 col-md-4">
                 <div class="d-flex align-items-center mb-3">
                   <span
                     class="text-primary me-2"
@@ -900,16 +890,16 @@
                     >Business &amp; Industrial</a
                   >
                 </div>
-              </div>
+              </div> -->
             </div>
-            <div class="text-center border-top border-translucent pt-3">
+            <!-- <div class="text-center border-top border-translucent pt-3">
               <a class="fw-bold" href="#!"
                 >See all Categories<span
                   class="fas fa-angle-right ms-1"
                   data-fa-transform="down-1"
                 ></span
               ></a>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -932,7 +922,7 @@
       <li class="nav-item" data-nav-item="data-nav-item">
         <a
           class="nav-link"
-          href="{% static 'apps/e-commerce/landing/wishlist.html' %}"
+          href="{% url 'wishlist_view' %}"
           >Wishlist</a
         >
       </li>

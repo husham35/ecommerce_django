@@ -1,0 +1,87 @@
+{% extends "base_customer.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="ecommerce-homepage pt-5 mb-9">
+	<!-- ============================================-->
+	<!-- <section> begin ============================-->
+	<section class="pt-5 pb-9">
+		<div class="container-small cart">
+			<nav class="mb-3" aria-label="breadcrumb">
+				<ol class="breadcrumb mb-0">
+					<li class="breadcrumb-item"><a href="{% url 'home' %}">Hompe</a></li>
+					<li class="breadcrumb-item"><a href="{% url 'product_list' %}">Producs</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Wishlist</li>
+				</ol>
+			</nav>
+			<h2 class="mb-5">{{request.user.first_name}} Wishlist<span class="text-body-tertiary fw-normal ms-2"></span></h2>
+			<div class="border-y border-translucent" id="productWishlistTable"
+				data-list='{"valueNames":["products","color","size","price","quantity","total"],"page":5,"pagination":true}'>
+				<div class="table-responsive scrollbar">
+					{% if wishlist.items.all %}
+					<table class="table fs-9 mb-0">
+						<thead>
+							<tr>
+								<th class="sort white-space-nowrap align-middle fs-10" scope="col" style="width:7%;"></th>
+								<th class="sort white-space-nowrap align-middle" scope="col"
+									style="width:30%; min-width:250px;" data-sort="products">PRODUCTS</th>
+								<!-- <th class="sort align-middle" scope="col" data-sort="color" style="width:16%;">COLOR</th>
+								<th class="sort align-middle" scope="col" data-sort="size" style="width:10%;">SIZE</th> -->
+								<th class="sort align-middle text-end" scope="col" data-sort="price" style="width:10%;">
+									PRICE</th>
+								<th class="sort align-middle text-end pe-0" scope="col" style="width:35%;"> </th>
+							</tr>
+						</thead>
+						<tbody class="list" id="profile-wishlist-table-body">
+							{% for item in wishlist.items.all %}
+							<tr class="hover-actions-trigger btn-reveal-trigger position-static">
+								<td class="align-middle white-space-nowrap ps-0 py-0">
+									<a class="border border-translucent rounded-2 d-inline-block" href="{% url 'product_details' item.product.id %}">
+										<img src="{{ item.product.image.url }}" alt="" width="53" />
+									</a>
+								</td>
+								<td class="products align-middle pe-11">
+									<a class="fw-semibold mb-0 line-clamp-1"
+										href="{% url 'product_details' item.product.id %}">{{ item.product.name }}
+									</a>
+								</td>
+								<!-- <td class="color align-middle white-space-nowrap fs-9 text-body">Pure matte black</td>
+								<td class="size align-middle white-space-nowrap text-body-tertiary fs-9 fw-semibold">42</td> -->
+								<td class="price align-middle text-body fs-9 fw-semibold text-end">$57</td>
+								<td class="total align-middle fw-bold text-body-highlight text-end text-nowrap pe-0">
+									<form method="post" action="{% url 'remove_from_wishlist' item.product.id %}">
+										{% csrf_token %}
+										<!-- <button type="submit">Remove</button> -->
+										<button class="btn btn-sm text-body-quaternary text-body-tertiary-hover me-2"><span class="fas fa-trash"></span></button>
+										<button class="btn btn-primary fs-10"><span class="fas fa-shopping-cart me-1 fs-10"></span>Add to cart</button>
+									</form>
+								</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					{% else %}
+					<p>Your wishlist is empty.</p>
+					{% endif %}
+				</div>
+				<div class="row align-items-center justify-content-between py-2 pe-0 fs-9">
+					<div class="col-auto d-flex">
+						<p class="mb-0 d-none d-sm-block me-3 fw-semibold text-body" data-list-info="data-list-info"></p><a
+							class="fw-semibold" href="#!" data-list-view="*">View all<span class="fas fa-angle-right ms-1"
+								data-fa-transform="down-1"></span></a><a class="fw-semibold d-none" href="#!"
+							data-list-view="less">View Less<span class="fas fa-angle-right ms-1"
+								data-fa-transform="down-1"></span></a>
+					</div>
+					<div class="col-auto d-flex"><button class="page-link" data-list-pagination="prev"><span
+								class="fas fa-chevron-left"></span></button>
+						<ul class="mb-0 pagination"></ul><button class="page-link pe-0" data-list-pagination="next"><span
+								class="fas fa-chevron-right"></span></button>
+					</div>
+				</div>
+			</div>
+		</div><!-- end of .container-->
+	</section><!-- <section> close ============================-->
+	<!-- ============================================-->
+</div>
+{% endblock %}
