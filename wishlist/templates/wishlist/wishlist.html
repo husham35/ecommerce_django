@@ -54,7 +54,7 @@
 										{% csrf_token %}
 										<!-- <button type="submit">Remove</button> -->
 										<button class="btn btn-sm text-body-quaternary text-body-tertiary-hover me-2"><span class="fas fa-trash"></span></button>
-										<button class="btn btn-primary fs-10"><span class="fas fa-shopping-cart me-1 fs-10"></span>Add to cart</button>
+										<a class="btn btn-primary fs-10" href="{% url 'add_to_cart' item.product.id %}"><span class="fas fa-shopping-cart me-1 fs-10"></span>Add to cart</a>
 									</form>
 								</td>
 							</tr>

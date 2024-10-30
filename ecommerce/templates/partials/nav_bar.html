@@ -53,17 +53,15 @@
 							<!-- make visible if logged in -->
 					  	{% if user.is_authenticated %}
               <li class="nav-item">
+                <!-- icon-indicator icon-indicator-primary -->
                 <a
-                  class="nav-link px-2 icon-indicator icon-indicator-primary"
-                  href="{% static 'apps/e-commerce/landing/cart.html' %}"
+                  class="nav-link px-2"
+                  href="{% url 'cart_detail' %}"
                   role="button"
-                  ><span
-                    class="text-body-tertiary"
-                    data-feather="shopping-cart"
-                    style="height: 20px; width: 20px"
-                  ></span
-                  ><span class="icon-indicator-number">3</span></a
-                >
+                  >
+                  <span class="text-body-tertiary" data-feather="shopping-cart" style="height: 20px; width: 20px" ></span>
+                  <!-- <span class="icon-indicator-number"></span> -->
+                </a>
               </li>
               <li class="nav-item dropdown">
                 <a
