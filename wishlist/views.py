@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Wishlist, WishlistItem
-from products.models import Product
+from products.models import Product, Category
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -26,7 +26,8 @@ def remove_from_wishlist(request, product_id):
 @login_required
 def wishlist_view(request):
     wishlist, created = Wishlist.objects.get_or_create(user=request.user)
-    return render(request, 'wishlist/wishlist.html', {'wishlist': wishlist})
+    categories = Category.objects.all()
+    return render(request, 'wishlist/wishlist.html', {'wishlist': wishlist, 'categories': categories})
 
 
 

@@ -68,7 +68,7 @@
 							<th class="sort white-space-nowrap align-middle fs-10" scope="col" style="width:70px;"></th>
 							<th class="sort white-space-nowrap align-middle ps-4" scope="col" style="width:350px;" data-sort="product">PRODUCT NAME</th>
 							<th class="sort align-middle text-end ps-4" scope="col" data-sort="price" style="width:150px;">PRICE</th>
-							<th class="sort white-space-nowrap align-middle ps-4" scope="col" style="width:350px;" data-sort="product">DESCRIPTION</th>
+							<th class="sort align-middle ps-4" scope="col" style="width:150px;" data-sort="product">DESCRIPTION</th>
 							<th class="sort align-middle ps-4" scope="col" data-sort="category" style="width:150px;"> CATEGORY</th>
 							<th class="sort align-middle ps-4" scope="col" data-sort="time" style="width:50px;"> PUBLISHED</th>
 							<th class="sort text-end align-middle pe-0 ps-4" scope="col">ACTIONS</th>
@@ -89,7 +89,7 @@
 							</td>
 							<td class="product align-middle ps-4"><a class="fw-semibold line-clamp-3 mb-0" href="{% url 'product_details' product.id %}">{{ product.name }}</a></td>
 							<td class="price align-middle white-space-nowrap text-end fw-bold text-body-tertiary ps-4">$ {{ product.price }}</td>
-							<td class="vendor align-middle text-start fw-semibold ps-4">{{ product.description }}</td>
+							<td class="vendor align-middle text-start fw-semibold ps-4" style="max-width:450px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ product.description }}</td>
 							<td class="vendor align-middle text-start fw-semibold ps-4">{{ product.category }}</td>
 							<td class="time align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4">
 								{% if product.published %}

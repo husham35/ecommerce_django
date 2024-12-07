@@ -41,7 +41,8 @@ def product_details(request, product_id):
     if request.user.is_authenticated and request.user.is_staff:
         return render(request, 'products/product_view.html', {'product': product})
     else:
-        return render(request, 'products/product_details.html', {'product': product})
+        categories = Category.objects.all()
+        return render(request, 'products/product_details.html', {'product': product, 'categories': categories})
     # if request.method == 'POST':
     #     form = ProductForm(request.POST, request.FILES, instance=product)
     #     if form.is_valid():

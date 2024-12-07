@@ -48,7 +48,7 @@
 								</td>
 								<!-- <td class="color align-middle white-space-nowrap fs-9 text-body">Pure matte black</td>
 								<td class="size align-middle white-space-nowrap text-body-tertiary fs-9 fw-semibold">42</td> -->
-								<td class="price align-middle text-body fs-9 fw-semibold text-end">$57</td>
+								<td class="price align-middle text-body fs-9 fw-semibold text-end">${{ item.product.price }}</td>
 								<td class="total align-middle fw-bold text-body-highlight text-end text-nowrap pe-0">
 									<form method="post" action="{% url 'remove_from_wishlist' item.product.id %}">
 										{% csrf_token %}
